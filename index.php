@@ -5,9 +5,12 @@ $targets = array();
 
 /*
 // Sample configuration
+$mail_errors_to = 'admin@example.com';
+
 $targets['username/repository/refs/head/master'] = array(
-		'command 1',
-		'command 2'
+		'cd /var/www/sites/example.com && git pull && git reset --HARD',
+		'php /var/www/sites/example.com/index.php migrate',
+		'sudo /etc/init.d/apache2 reload'
 	)
 );
 */
@@ -28,21 +31,21 @@ if( ! isset($_POST['payload'])): ?>
 				font-size: 16px;
 				margin: 100px;
 			}
-			
+
 			h1 {
 				font-weight: normal;
 				font-size: 3em;
 			}
-			
+
 			h2 {
 				margin-top: 0;
 				font-weight: normal;
 			}
-			
+
 			p {
 				margin-bottom: 0;
 			}
-			
+
 			.attention {
 				background-color: #FFFF88;
 				padding: 18px;
@@ -63,10 +66,11 @@ if( ! isset($_POST['payload'])): ?>
 		</div>
 		<?php endif; ?>
 
-		<p><a href="http://github.com/hakkah/Captain">Fork me</a>.</p>
+		<p><a href="http://github.com/hemligabyran/Captain">Fork me</a>.</p>
 	</body>
 	</html>
 <?php
+die();
 endif;
 
 $payload = json_decode($_POST['payload']);
